@@ -37,7 +37,7 @@ KeySwitch KeyFour(S4_DEFAULT_PIN, ACTIVE_HIGH);
 KeySwitch KeyFive(S5_DEFAULT_PIN, ACTIVE_HIGH);
 KeySwitch KeySix(S6_DEFAULT_PIN, ACTIVE_HIGH);
 
-uint8_t screen = 0; // 0 = Menu, 1 = Spannung, 2 = Widerstand
+uint8_t screen = 0; 
 
 LED LedA(LED_PIN2);
 Sound Horn;
@@ -152,7 +152,7 @@ void setup() {
 
   Menu();
 }
-//test
+
 
 void loop() {
 
@@ -175,7 +175,7 @@ void loop() {
 
   
 if (screen == 1) {
-  //Alarm(u1, u2);
+  Alarm(u1, u2);
   displayVoltage(analogRead(POTI2_PIN), 0);
   displayResistance(analogRead(POTI1_PIN), 1);
   //displayVoltage(analogRead(POTI1_PIN), 1);
