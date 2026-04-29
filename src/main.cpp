@@ -90,7 +90,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
   float voltageFloat;
   voltageFloat = adcValue * V_REF / STEPS;
   lcd.setCursor(VOLT_POS, row);
-  lcd.print("U = " + String(voltageFloat, 3) + " V");
+  lcd.print("U = " + String(voltageFloat, 3) + " Vo");
   return voltageFloat;
 } 
 
@@ -152,6 +152,7 @@ void setup() {
 
   Menu();
 }
+//test
 
 void loop() {
 
