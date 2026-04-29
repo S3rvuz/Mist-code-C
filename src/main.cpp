@@ -139,7 +139,7 @@ void Alarm(float u1, float u2) {
      
     lcd.clear();
     lcd.setCursor(0, 0);
-    lcd.print("Menu:");
+    lcd.print("      Menu:");
     lcd.setCursor(0, 1);
     lcd.print("S1=L S2=R S3=I");
   
