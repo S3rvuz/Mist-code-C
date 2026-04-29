@@ -1,11 +1,7 @@
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
 #include <MCCAB_Lib.h>
-#include <iostream>
 
-namespace std;
-
-cout << "Hello World!" << endl;
 
 #define LED_PIN 5
 #define LED_PIN2 8
