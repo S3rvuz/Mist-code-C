@@ -179,16 +179,20 @@ void loop() {
 
   
 if (screen == 1) {
-  Alarm(u1, u2);
-  displayVoltage(analogRead(POTI2_PIN), 0);
+  
+  float u = displayVoltage(analogRead(POTI2_PIN), 0);
   displayResistance(analogRead(POTI1_PIN), 1);
   //displayVoltage(analogRead(POTI1_PIN), 1);
+
+  Alarm(u, 0);
 }
 
 if (screen == 2) {
-  Alarm(u1, u2);
-  displayVoltage(analogRead(POTI1_PIN), 0);
+  
+  float u = displayVoltage(analogRead(POTI1_PIN), 0);
   displayResistance(analogRead(POTI2_PIN), 1);
+
+  Alarm(u, 0);
   
   //displayResistance(analogRead(POTI1_PIN), 1);
 }
