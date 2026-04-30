@@ -137,6 +137,14 @@ void Alarm(float u1, float u2) { //Methode, um den Alarm zu steuern.
 }
   }
 
+void alarmAusloesen(float u) {
+  if (u > 2.5) {
+    switchedOn();
+  } else {
+    switchedOff();
+  }
+}
+
 
   void Menu() {
      
@@ -184,7 +192,7 @@ if (screen == 1) {
   displayResistance(analogRead(POTI1_PIN), 1);
   //displayVoltage(analogRead(POTI1_PIN), 1);
 
-  Alarm(u, 0);
+  alarmAusloesen(u);
 }
 
 if (screen == 2) {
@@ -192,7 +200,7 @@ if (screen == 2) {
   float u = displayVoltage(analogRead(POTI1_PIN), 0);
   displayResistance(analogRead(POTI2_PIN), 1);
 
-  Alarm(u, 0);
+  alarmAusloesen(u);
   
   //displayResistance(analogRead(POTI1_PIN), 1);
 }
