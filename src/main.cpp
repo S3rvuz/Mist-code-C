@@ -59,19 +59,19 @@ void alarmSound() { //Methode für den Alarmton, der zwischen 1000 Hz und 2000 H
   high = !high; //Wechselt den Wert von high, damit beim nächsten Aufruf der Methode die andere Frequenz erzeugt wird
 }
 
-int alarmLeds[] = {5, 8, 10, 11, 12};
-const int alarmLedCount = 5;
+int alarmLeds[] = {2, 3, 4, 5, 6, 7, 8, 10, 11, 12};
+const int alarmLedCount = 10;
 
 void Alarmbeleuchtung() {
   for (int i = 0; i < alarmLedCount; i++) {
     pinMode(alarmLeds[i], OUTPUT);
     digitalWrite(alarmLeds[i], HIGH);
-    delay(50);
+    delay(10);
   }
 
   for (int i = alarmLedCount - 1; i >= 0; i--) {
     digitalWrite(alarmLeds[i], LOW);
-    delay(50);
+    delay(10);
   }
 }
 
