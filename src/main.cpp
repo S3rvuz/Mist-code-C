@@ -59,19 +59,19 @@ void alarmSound() { //Methode für den Alarmton, der zwischen 1000 Hz und 2000 H
   high = !high; //Wechselt den Wert von high, damit beim nächsten Aufruf der Methode die andere Frequenz erzeugt wird
 }
 
-int alarmLeds[] = {2, 3, 4, 5, 6, 7, 8, 10, 11, 12};
-const int alarmLedCount = 10;
+int alarmLeds[] = {2, 3, 4, 5, 6, 7, 8, 10, 11, 12}; //Array mit den Pins der LEDs, die für die Alarmbeleuchtung verwendet werden.
+const int alarmLedCount = 10; //Anzahl der LEDs in dem Array, damit die Schleife in der Methode Alarmbeleuchtung() weiß, wie viele LEDs sie ansteuern soll.
 
-void Alarmbeleuchtung() {
-  for (int i = 0; i < alarmLedCount; i++) {
-    pinMode(alarmLeds[i], OUTPUT);
-    digitalWrite(alarmLeds[i], HIGH);
-    delay(10);
+void Alarmbeleuchtung() { //Methode, um die Alarmbeleuchtung zu steuern.
+  for (int i = 0; i < alarmLedCount; i++) { //Schleife, die von 0 bis alarmLedCount (10) läuft, um alle LEDs im Array anzusteuern.
+    pinMode(alarmLeds[i], OUTPUT); //Setzt den Pin der aktuellen LED im Array als Ausgang, damit sie angesteuert werden kann.
+    digitalWrite(alarmLeds[i], HIGH); //Schaltet die aktuelle LED im Array ein, um die Alarmbeleuchtung zu aktivieren.
+    delay(10); //Verzögert die Schleife um 10 ms.
   }
 
-  for (int i = alarmLedCount - 1; i >= 0; i--) {
-    digitalWrite(alarmLeds[i], LOW);
-    delay(10);
+  for (int i = alarmLedCount - 1; i >= 0; i--) { //Schleife, die von alarmLedCount - 1 (9) bis 0 läuft, um alle LEDs im Array in umgekehrter Reihenfolge auszuschalten.
+    digitalWrite(alarmLeds[i], LOW); //Schaltet die aktuelle LED im Array aus, um die Alarmbeleuchtung zu deaktivieren.
+    delay(10); //Verzögert die Schleife um 10 ms, damit die LEDs nacheinander ausgeschaltet werden.
   }
 }
 
@@ -137,102 +137,102 @@ void Alarm(float u1, float u2) { //Methode, um den Alarm zu steuern.
 }
   }
 
-void alarmAusloesen(float u) {
-  if (u > 2.5) {
-    switchedOn();
+void alarmAusloesen(float u) { //Methode, um den Alarm auszulösen, wenn die Spannung u größer als 2,5 V ist.
+  if (u > 2.5) { //Wenn die Spannung u größer als 2,5 V ist, wird der Alarm aktiviert.
+    switchedOn(); //Ruft die Methode switchedOn() auf, um den Alarm zu aktivieren, die LED einzuschalten und den Warnton zu starten.
   } else {
-    switchedOff();
+    switchedOff(); //Ruft die Methode switchedOff() auf, um den Alarm zu deaktivieren, die LED auszuschalten und den Warnton zu stoppen.
   }
 }
 
 
-  void Menu() {
+  void Menu() { //Methode, um das Menü auf dem LCD-Display anzuzeigen.
      
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("     Menu :");
-    lcd.setCursor(0, 1);
-    lcd.print(" S1=L S2=R S3=I");
+    lcd.clear(); //Löscht den Inhalt des LCD-Displays, um das Menü anzuzeigen.
+    lcd.setCursor(0, 0); //Setzt den Cursor auf die Position (0, 0), um die Menüüberschrift an der ersten Zeile und ersten Spalte des Displays anzuzeigen.
+    lcd.print("     Menu :"); //Gibt die Menüüberschrift "Menu :" auf dem LCD-Display aus, zentriert in der ersten Zeile.
+    lcd.setCursor(0, 1); //Setzt den Cursor auf die Position (0, 1), um die Anweisungen für die Tasten S1, S2 und S3 in der zweiten Zeile des Displays anzuzeigen.
+    lcd.print(" S1=L S2=R S3=I"); //Gibt die Anweisungen "S1=L S2=R S3=I" auf dem LCD-Display aus, um dem Benutzer zu zeigen, welche Tasten er drücken muss.
   
 }
 
-void setup() {
-  pinMode(LED_PIN, OUTPUT);
-  analogReference(DEFAULT);
-  lcd.init();
-  lcd.backlight();
+void setup() { //Initialisierung der Pins, des LCD-Displays und des Menüs
+  pinMode(LED_PIN, OUTPUT); //Setzt den Pin der LED (Pin 5) als Ausgang, damit er angesteuert werden kann.
+  analogReference(DEFAULT); //Setzt die Referenzspannung für die analogen Eingänge auf den Standardwert (5 V oder 3,3 V. Je nach Arduino-Modell).
+  lcd.init(); //Initialisiert das LCD-Display, damit es bereit ist, Daten anzuzeigen.
+  lcd.backlight(); //Schaltet die Hintergrundbeleuchtung des LCD-Displays ein, damit die angezeigten Informationen besser sichtbar sind.
 
-  Menu();
+  Menu(); //Ruft die Methode Menu() auf, um das Menü auf dem LCD-Display anzuzeigen.
 }
 
 
-void loop() {
+void loop() { //Hauptschleife.
 
-    if (KeyOne.isOn()) {
-    screen = 1;
-    lcd.clear();
+    if (KeyOne.isOn()) { //Wenn die Taste S1 (KeyOne) gedrückt wird, wird der Bildschirm auf 1 gesetzt.
+    screen = 1; //Setzt die Variable screen auf 1, um anzuzeigen, dass der Bildschirm für die Spannung angezeigt werden soll.
+    lcd.clear(); //Löscht den Inhalt des LCD-Displays, um Platz für die neuen Informationen zu schaffen, die auf dem Bildschirm 1 angezeigt werden sollen.
   }
 
-  if (KeyTwo.isOn()) {
-    screen = 2;
-    lcd.clear();
+  if (KeyTwo.isOn()) { //Wenn die Taste S2 (KeyTwo) gedrückt wird, wird der Bildschirm auf 2 gesetzt.
+    screen = 2; //Setzt die Variable screen auf 2, um anzuzeigen, dass der Bildschirm für den Widerstand angezeigt werden soll.
+    lcd.clear(); //Löscht den Inhalt des LCD-Displays, um Platz für die neuen Informationen zu schaffen, die auf dem Bildschirm 2 angezeigt werden sollen.
   }
-  if (KeyThree.isOn()) {
-    screen = 3;
-    lcd.clear();
+  if (KeyThree.isOn()) { //Wenn die Taste S3 (KeyThree) gedrückt wird, wird der Bildschirm auf 3 gesetzt.
+    screen = 3; //Setzt die Variable screen auf 3, um anzuzeigen, dass der Bildschirm für den Strom angezeigt werden soll.
+    lcd.clear(); //Löscht den Inhalt des LCD-Displays, um Platz für die neuen Informationen zu schaffen, die auf dem Bildschirm 3 angezeigt werden sollen.
   }
 
-  float u1 = analogRead(POTI1_PIN) * V_REF / STEPS;
-  float u2 = analogRead(POTI2_PIN) * V_REF / STEPS;
+  float u1 = analogRead(POTI1_PIN) * V_REF / STEPS; //Liess den ADC-Wert von POTI1_PIN (Poti Links) aus, multipliziert ihn mit der Referenzspannung (V_REF) und teilt ihn durch die Anzahl der Schritte (STEPS), um die Spannung u1 zu berechnen.
+  float u2 = analogRead(POTI2_PIN) * V_REF / STEPS; //Liess den ADC-Wert von POTI2_PIN (Poti Rechts) aus, multipliziert ihn mit der Referenzspannung (V_REF) und teilt ihn durch die Anzahl der Schritte (STEPS), um die Spannung u2 zu berechnen.
 
   
-if (screen == 1) {
+if (screen == 1) { //Wenn der Bildschirm 1 (Spannung) angezeigt wird, werden die Spannung von POTI2_PIN (Poti Rechts) angezeigt und die Alarmbedingung überprüft.
   
-  float u = displayVoltage(analogRead(POTI2_PIN), 0);
-  displayResistance(analogRead(POTI1_PIN), 1);
+  float u = displayVoltage(analogRead(POTI2_PIN), 0); //Ruft die Methode displayVoltage() auf, um die Spannung von POTI2_PIN (Poti Rechts) anzuzeigen. 
+  displayResistance(analogRead(POTI1_PIN), 1); //Ruft die Methode displayResistance() auf, um den Widerstand von POTI1_PIN (Poti Links) anzuzeigen. 
   //displayVoltage(analogRead(POTI1_PIN), 1);
 
-  alarmAusloesen(u);
+  alarmAusloesen(u); //Ruft die Methode alarmAusloesen() auf, um den Alarm auszulösen.
 }
 
-if (screen == 2) {
-  
-  float u = displayVoltage(analogRead(POTI1_PIN), 0);
-  displayResistance(analogRead(POTI2_PIN), 1);
+if (screen == 2) { //Wenn der Bildschirm 2 (Widerstand) angezeigt wird, werden der Widerstand von POTI2_PIN (Poti Rechts) angezeigt und die Alarmbedingung überprüft.
 
-  alarmAusloesen(u);
+  float u = displayVoltage(analogRead(POTI1_PIN), 0); //Ruft die Methode displayVoltage() auf, um die Spannung von POTI1_PIN (Poti Links) anzuzeigen.
+  displayResistance(analogRead(POTI2_PIN), 1); //Ruft die Methode displayResistance() auf, um den Widerstand von POTI2_PIN (Poti Rechts) anzuzeigen.
+
+  alarmAusloesen(u); //Ruft die Methode alarmAusloesen() auf, um den Alarm auszulösen.
   
   //displayResistance(analogRead(POTI1_PIN), 1);
 }
 
-if (screen == 3) {
-  uint16_t adcU1 = analogRead(POTI1_PIN);
-  uint16_t adcR1 = analogRead(POTI2_PIN);
+if (screen == 3) { //Wenn der Bildschirm 3 (Strom) angezeigt wird, werden die Spannung von POTI1_PIN (Poti Links) und der Widerstand von POTI2_PIN (Poti Rechts) angezeigt, um den Strom zu berechnen und anzuzeigen.
+  uint16_t adcU1 = analogRead(POTI1_PIN); //Liest den ADC-Wert von POTI1_PIN (Poti Links) aus und speichert ihn in der Variable adcU1, um die Spannung u1 zu berechnen und anzuzeigen.
+  uint16_t adcR1 = analogRead(POTI2_PIN); //Liest den ADC-Wert von POTI2_PIN (Poti Rechts) aus und speichert ihn in der Variable adcR1, um den Widerstand r1 zu berechnen und anzuzeigen.
 
-  uint16_t adcU2 = analogRead(POTI2_PIN);
-  uint16_t adcR2 = analogRead(POTI1_PIN);
+  uint16_t adcU2 = analogRead(POTI2_PIN); //Liest den ADC-Wert von POTI2_PIN (Poti Rechts) aus und speichert ihn in der Variable adcU2, um die Spannung u2 zu berechnen und anzuzeigen.
+  uint16_t adcR2 = analogRead(POTI1_PIN); //Liest den ADC-Wert von POTI1_PIN (Poti Links) aus und speichert ihn in der Variable adcR2, um den Widerstand r2 zu berechnen und anzuzeigen.
 
-  float voltage1 = adcU1 * V_REF / STEPS;
-  float resistance1 = (adcR1 / 1023.0) * POTI_OHM;
+  float voltage1 = adcU1 * V_REF / STEPS; //Berechnet die Spannung u1 
+  float resistance1 = (adcR1 / 1023.0) * POTI_OHM; //Berechnet den Widerstand r1.
 
-  float voltage2 = adcU2 * V_REF / STEPS;
-  float resistance2 = (adcR2 / 1023.0) * POTI_OHM;
+  float voltage2 = adcU2 * V_REF / STEPS; //Berechnet die Spannung u2
+  float resistance2 = (adcR2 / 1023.0) * POTI_OHM; //Berechnet den Widerstand r2.
 
-  displayCurrent(voltage1, resistance1, 0);
-  lcd.print("IUR");
-  displayCurrent(voltage2, resistance2, 1);
-  lcd.print("IRU");
+  displayCurrent(voltage1, resistance1, 0); //Ruft die Methode displayCurrent() auf, um den Strom anzuzeigen.
+  lcd.print("IUR"); //Gibt die Einheit "IUR" (Strom in Ampere) auf dem LCD-Display aus, um dem Benutzer zu zeigen, dass der angezeigte Wert der Strom ist.
+  displayCurrent(voltage2, resistance2, 1); //Ruft die Methode displayCurrent() auf, um den Strom anzuzeigen.
+  lcd.print("IRU"); //Gibt die Einheit "IRU" (Strom in Ampere) auf dem LCD-Display aus, um dem Benutzer zu zeigen, dass der angezeigte Wert der Strom ist.
 }
   
 
-  if (enabled) {
-    alarmSound();
-    Alarmbeleuchtung();
+  if (enabled) { //Wenn der Alarm aktiviert ist (enabled ist true). 
+    alarmSound(); //wird die Methode alarmSound() aufgerufen.
+    Alarmbeleuchtung(); //und die Methode Alarmbeleuchtung() aufgerufen.
   } 
 
 
 
-  delay(PAUSE);
+  delay(PAUSE); //Verzögert die Hauptschleife um die in der Konstante PAUSE (300 ms) festgelegte Zeit, um die Aktualisierungsrate des Displays und des Alarms zu steuern.
 }
 
 
