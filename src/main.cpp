@@ -232,7 +232,7 @@ if (screen == 3) { //Wenn der Bildschirm 3 (Strom) angezeigt wird, werden die Sp
 
 
 
-  delay(PAUSE); //Verzögert die Hauptschleife um die in der Konstante PAUSE (300 ms) festgelegte Zeit, um die Aktualisierungsrate des Displays und des Alarms zu steuern.
+  delay(PAUSE); //Verzögert die Hauptschleife um die in der Konstante PAUSE (30 ms) festgelegte Zeit, um die Aktualisierungsrate des Displays und des Alarms zu steuern.
 }
 
 
