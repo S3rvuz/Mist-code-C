@@ -1,6 +1,6 @@
-#include <Arduino.h>
-#include <LiquidCrystal_I2C.h> //
-#include <MCCAB_Lib.h>
+#include <Arduino.h> //Einbindung der Arduino-Bibliothek, die grundlegende Funktionen und Definitionen für die Programmierung von Arduino-Boards bereitstellt.
+#include <LiquidCrystal_I2C.h>  //Einbindung der LiquidCrystal_I2C-Bibliothek, die Funktionen für die Ansteuerung von LCD-Displays mit I2C-Schnittstelle bereitstellt.
+#include <MCCAB_Lib.h> //Einbindung der MCCAB_Lib-Bibliothek, die Funktionen für die Ansteuerung von Tasten und LEDs bereitstellt, um die Interaktion mit dem Benutzer zu ermöglichen.
 
 
 #define LED_PIN 5 //LED ansteuern 5
@@ -10,7 +10,7 @@
 #define V_REF 3.3 //Standardvolt auf 3,3V eingestellt
 #define STEPS 1024.0 //10 Bit ADC, also 2^10 = 1024 Schritte -> siehe Buch
 #define VOLT_POS 0 //Position des Spannungswerts auf dem Display
-#define PAUSE 300 //Aktualisierungsrate
+#define PAUSE 30 //Aktualisierungsrate des Displays und des Alarms in ms
 #define BUZZER_PIN 9 //Piep Piep
 #define PERIOD 1000 //Periode des Tons in ms
 #define DURATION_TONE 1000 //Dauer des Tons in ms
