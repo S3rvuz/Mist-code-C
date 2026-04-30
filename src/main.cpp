@@ -59,22 +59,22 @@ void alarmSound() { //Methode für den Alarmton, der zwischen 1000 Hz und 2000 H
   high = !high; //Wechselt den Wert von high, damit beim nächsten Aufruf der Methode die andere Frequenz erzeugt wird
 }
 
-void Alarmbeleuchtung() { //Methode, um die Alarmbeleuchtung zu steuern, die alle 13 LEDs nacheinander einschaltet und dann wieder ausschaltet
+int alarmLeds[] = {5, 8, 10, 11, 12};
+const int alarmLedCount = 5;
 
-  for(int i = 0; i <= 12; i++) { //Schleife, um die LEDs von 0 bis 12 anzusteuern
-    pinMode(i, OUTPUT); //Setzt den Pin i als Ausgang, damit die LED angesteuert werden kann
-    digitalWrite(i, HIGH); //Schaltet die LED an Pin i ein
-    delay(10); //Kurze Verzögerung, damit die LEDs nacheinander eingeschaltet werden 10 ms
+void Alarmbeleuchtung() {
+  for (int i = 0; i < alarmLedCount; i++) {
+    pinMode(alarmLeds[i], OUTPUT);
+    digitalWrite(alarmLeds[i], HIGH);
+    delay(50);
+  }
 
-    if (i == 12) { //Wenn die letzte LED (Pin 12) eingeschaltet ist, werden alle LEDs wieder ausgeschaltet
-      for(int j = 12; j >= 0; j--) { //Schleife, um die LEDs von 12 bis 0 auszuschalten
-        digitalWrite(j, LOW); //Schaltet die LED an Pin j aus
-        delay(10); //Kurze Verzögerung, damit die LEDs nacheinander ausgeschaltet werden 10 ms
-      }
-    }
-
+  for (int i = alarmLedCount - 1; i >= 0; i--) {
+    digitalWrite(alarmLeds[i], LOW);
+    delay(50);
   }
 }
+
 void switchedOn() { //Methode, um den Alarm zu aktivieren, die LED einzuschalten und den Warnton zu starten
   //LedA.blink(F_1_5_HZ);
   enabled = true; //Setzt enabled auf true, damit der Alarmton in der loop() Methode abgespielt wird
@@ -227,7 +227,7 @@ if (screen == 3) {
 
   if (enabled) {
     alarmSound();
-    //Alarmbeleuchtung();
+    Alarmbeleuchtung();
   } 
 
 
